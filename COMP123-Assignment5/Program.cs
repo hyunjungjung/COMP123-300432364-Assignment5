@@ -10,16 +10,21 @@ using System.IO;
  * Student # : 300432364
  * Date : July 20th, 2016
  * Description : Main Program for File I/O and Exception Handling
- * Version : 0.0.1 : Initial commit
+ * Version : 0.0.2 : Added gradeMenu and callFile Method
  */
 namespace COMP123_Assignment5
 {
     class Program
     {
+
+        private static List<string> student = new List<string>();
         static void Main(string[] args)
         {
+
+
             gradeMenu();
         }
+
         /**
          * <summary>
          * This method creates a console menu that allows the user to choose see grades or leave the app
@@ -31,6 +36,8 @@ namespace COMP123_Assignment5
          */
         public static void gradeMenu()
         {
+
+
             bool menuActive = true;
 
             // 
@@ -49,7 +56,9 @@ namespace COMP123_Assignment5
                     case ConsoleKey.D1: // The "1" Key - Select Display Grade
                         Console.Clear();
                         Console.WriteLine("+ Student Grades +++++++++++++++");
-
+                        Console.WriteLine("+ Enter a file name to load ++++");
+                        string fileInput = Console.ReadLine();
+                        callFile(fileInput);
                         Console.WriteLine("++++++++++++++++++++++++++++++++");
                         Console.WriteLine("Please press any key to continue");
                         Console.ReadKey();
@@ -64,6 +73,37 @@ namespace COMP123_Assignment5
                 }
             }
         }
+
+        public static void callFile(string fileName)
+        {
+
+            try
+            {
+                FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                StreamReader fileReader = new StreamReader(fileStream);
+                string line = fileReader.ReadLine();
+                while (line != null)
+                {
+                    student.Add(line);
+
+                    Console.WriteLine(line);
+                    line = fileReader.ReadLine();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.Clear();
+                gradeMenu();
+                Console.WriteLine("File Not Found");
+            }
+
+
+        }
+
     }
+
 }
+
+
+
 
