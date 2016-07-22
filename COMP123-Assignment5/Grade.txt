@@ -1,0 +1,10 @@
+﻿Jones, Bob: 1 Introduction to Compter Science, A-
+Johnson, Sara: 2 Data Structures, B+
+Smith, Sam: 3 Data Structures, C
+Jung, Joanne: 4 Programming 1, A+
+Wilson, Thomas: 5 Introduction to Database, F
+Potter, Harry: 6 Introduction to Dark Art Magic, B+
+Wisley, Ronald: 7 Introduction to Dark Art Magic, A-
+Paker, Peter: 8 How to Fly Through Buildings, A+
+Wayne, Bruce: 9 How to be Rich in 5 Years, A+
+Kent, Clark: 10 Introduction to Fashion, D
