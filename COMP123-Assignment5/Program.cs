@@ -8,20 +8,25 @@ using System.IO;
 /**
  * Author : Joanne Jung
  * Student # : 300432364
- * Date : July 20th, 2016
+ * Date : July 22th, 2016
  * Description : Main Program for File I/O and Exception Handling
- * Version : 0.0.2 : Added gradeMenu and callFile Method
+ * Version : 0.0.3 : Final Commit 
  */
 namespace COMP123_Assignment5
 {
+    /**
+     * <summary>
+     * This class is the "driver" class for our program
+     * </summary>
+     * 
+     * @class Program
+     */
     class Program
     {
 
         private static List<string> student = new List<string>();
         static void Main(string[] args)
         {
-
-
             gradeMenu();
         }
 
@@ -57,8 +62,8 @@ namespace COMP123_Assignment5
                         Console.Clear();
                         Console.WriteLine("+ Student Grades +++++++++++++++");
                         Console.WriteLine("+ Enter a file name to load ++++");
-                        string fileInput = Console.ReadLine();
-                        callFile(fileInput);
+                       
+                        callFile();
                         Console.WriteLine("++++++++++++++++++++++++++++++++");
                         Console.WriteLine("Please press any key to continue");
                         Console.ReadKey();
@@ -74,30 +79,45 @@ namespace COMP123_Assignment5
             }
         }
 
-        public static void callFile(string fileName)
+        /**
+         * <summary>
+         * This method calls the file from the directory to show the data
+         * </summary>
+         * 
+         * @static
+         * @method callFile
+         * @returns {void}
+         */
+        public static void callFile()
         {
-
             try
             {
-                FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                StreamReader fileReader = new StreamReader(fileStream);
-                string line = fileReader.ReadLine();
-                while (line != null)
+                string filename = Console.ReadLine();
+                string Path = @"\\vmware-host\Shared Folders\Desktop\Summer 2016\COMP123 - Programming 2\COMP123-Assignment5\COMP123-Assignment5\bin\Debug\" + filename;
+                FileStream fileStream = new FileStream(Path, FileMode.Open, FileAccess.Read);
+                using (StreamReader fileReader = new StreamReader(fileStream))
                 {
-                    student.Add(line);
+                    string line = fileReader.ReadLine();
+                    while (line != null)
+                    {
+                        student.Add(line);
 
-                    Console.WriteLine(line);
-                    line = fileReader.ReadLine();
-                }
+                        Console.WriteLine(line);
+                        line = fileReader.ReadLine();
+                    }
+
+                };
+                
+               
+                
             }
             catch (FileNotFoundException)
             {
                 Console.Clear();
-                gradeMenu();
                 Console.WriteLine("File Not Found");
+                gradeMenu();
+                
             }
-
-
         }
 
     }
